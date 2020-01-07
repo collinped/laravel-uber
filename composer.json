@@ -1,0 +1,38 @@
+{
+    "name": "collinped/laravel-uber",
+    "description": "Laravel Uber Package",
+    "license": "MIT",
+    "type": "project",
+    "keywords": ["laravel", "uber", "uber-api"],
+    "authors": [
+        {
+            "name": "Collin Pedersen",
+            "email": "me@collinped.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.0",
+        "guzzlehttp/guzzle": "^6.5",
+        "illuminate/support": "^6.8",
+        "league/csv": "^9.5",
+        "league/flysystem-sftp": "^1.0"
+    },
+    "homepage":"https://github.com/collinped/laravel-uber",
+    "autoload": {
+        "psr-4": {
+            "Collinped\\Uber\\": "src/"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Collinped\\Uber\\UberServiceProvider"
+            ]
+        }
+    }
+}

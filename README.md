@@ -37,9 +37,39 @@ This is the contents of the file that will be published at config/uber.php
 Insert the following values into your .env
 
 ```php
-UBER_ENV=dev
+UBER_ENV=local //optional - uses your current APP_ENV by default
 UBER_ID=
 UBER_SECRET=
 ```
 
+Add your SFTP settings to the drivers array in config/filesystems.php
+
+```php
+'drivers' => [
+    ...,
+
+    'sftp' => [
+        'driver' => sftp',
+        'host' => 'sftp.uber.com',
+        'username' => env('UBER_SFTP_USERNAME'),
+        'password' => env('UBER_SFTP_PASSWORD'),
+        'privateKey' => env('UBER_PRIVATE_KEY', '/path/to/privateKey'),
+        'passphrase' => env('UBER_PRIVATE_KEY_PASSPHRASE'), //optional if set during RSA creation
+        'port' => 2222,
+        'root' => '',
+        // 'timeout' => 30,
+    ],
+]
+```
+
 See Uber Settings for instructions on how to get these values.
+
+### laravel-uber Roadmap
+
+- [ ] SFTP Upload Users to Uber Business
+- [ ] SFTP Upload Expense Codes to Uber Business
+- [ ] Download transactional data from Uber Business
+
+### Links
+- SFTP Automation - https://developer.uber.com/docs/businesses/data-automation/introduction#introduction
+- Transactional Data - https://developer.uber.com/docs/businesses/data-automation/data-download

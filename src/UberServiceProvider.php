@@ -1,8 +1,7 @@
 <?php
 
-namespace Collinped\TwilioVideo;
+namespace Collinped\Uber;
 
-use Aloha\Twilio\Commands\TwilioVideoRoomCommand;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
@@ -19,6 +18,7 @@ class UberServiceProvider extends ServiceProvider
         $this->registerRoutes();
         //$this->registerResources();
         $this->registerCommands();
+        $this->registerMigrations();
         $this->registerPublishing();
     }
 
@@ -52,9 +52,9 @@ class UberServiceProvider extends ServiceProvider
      */
     protected function registerRoutes()
     {
-        if (Twilio::$registersRoutes) {
+        if (Uber::$registersRoutes) {
             Route::group([
-                'prefix' => config('twilio-video.path'),
+                'prefix' => config('uber.path'),
                 'namespace' => 'Collinped\Uber\Http\Controllers',
                 'as' => 'uber.',
             ], function () {
@@ -70,7 +70,7 @@ class UberServiceProvider extends ServiceProvider
      */
     protected function registerCommands()
     {
-        $this->app->singleton('twilio-video.room', TwilioVideoRoomCommand::class);
+        //$this->app->singleton('twilio-video.room', TwilioVideoRoomCommand::class);
     }
 
     /**
@@ -80,7 +80,7 @@ class UberServiceProvider extends ServiceProvider
      */
     protected function registerMigrations()
     {
-        if (Twilio::$runsMigrations && $this->app->runningInConsole()) {
+        if (Uber::$runsMigrations && $this->app->runningInConsole()) {
             $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
         }
     }
